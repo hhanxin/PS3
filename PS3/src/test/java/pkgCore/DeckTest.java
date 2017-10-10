@@ -10,20 +10,17 @@ import pkgException.DeckException;
 public class DeckTest {
 
 	@Test
-	public void TestEmptyDeck() {
+	public void TestEmptyDeck() throws DeckException{
 		//TODO: Build a deck, draw until you get a DeckException
 		Deck Deck1= new Deck() ;
-		boolean deck1=false;
-		try {
-		for (int i = 1; i<= 100;i++) {
-		}Deck1.Draw();}
-		catch(DeckException c) {
-			deck1 = true;
-			assertTrue(deck1);
+		
+		for (int i = 0; i< 100;i++) {
+			Card c = Deck1.Draw();}
+		
 			
 			
 		}
-		}
+		
 	
 	
 	@Test
