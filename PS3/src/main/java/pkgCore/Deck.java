@@ -2,6 +2,7 @@ package pkgCore;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import pkgException.DeckException;
 
 import pkgEnum.eRank;
 import pkgEnum.eSuit;
@@ -20,18 +21,57 @@ public class Deck {
 	}
 
 	//TODO: Fix the Draw method so it throws an exception if the deck is empty
-	public Card Draw() {
+	public Card Draw() throws DeckException{
+		if(this.cardsInDeck.size() == 0) {
+			throw new DeckException(this);
+		}
 		return cardsInDeck.remove(0);
 	}
+	public Card Draw(eSuit eSuit) {
+		for (Card c: this.cardsInDeck) {
+			if (c.geteSuit() == eSuit) {
+				cardsInDeck.remove(c);
+				return c;
+			}
+		}
+		return null;
+	}
+	public Card Draw(eRank eRank) {
+		for(Card c: this.cardsInDeck) {
+			if(c.geteRank()== eRank) {
+				cardsInDeck.remove(c);
+				return c;
+			}
+		}
+		return null;
+	}
+public int Count(eSuit eSuit) {
+	int cardNumber = 0;
+	for(Card c:this.cardsInDeck) {
+		if(c.geteSuit()==eSuit) {
+			cardNumber++;
+		}
+	}
+	return cardNumber;
+}
+public int Count(eRank eRank) {
+	int cardNumber = 0;
+	for(Card c:this.cardsInDeck) {
+		if(c.geteRank()==eRank) {
+			cardNumber++;
+		}
+	}
+	return cardNumber;
+}
+public int Count(Card c) {
 	
-	//TODO: Write an overloaded Draw method to Draw a card of a given eSuit
+	for(Card cards:cardsInDeck) {
+		if(cards == c) {
+			return 1;
+		}
+	}
+	return 0;
+}
 	
-	//TODO: Write an overloaded Draw method to Draw a card of a given eRank
-
-	//TODO: Write a method that will return the number of a given eSuit left in the deck.
-	
-	//TODO: Write a method that will return the number of a given eRank left in the deck.
-	
-	//TODO: Write a method that will return 0 or 1 if a given card is left in the deck.
 	
 }
